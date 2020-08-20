@@ -1,0 +1,592 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+
+ class Calc1 
+{
+	JFrame  f;
+	JButton  b1,b2,b3,b4,b5,b6,b7,b8,b9,b0, pow, root, rev, log, fac, isin, icos, itan, sin, cos, tan, equal, clr, point, add, sub, div, mul;
+	int  str=0;
+	static double  a, b, d;
+	public static String  string3, op1, op2;
+	JTextField  x;					//  for inputting
+	JTextField  y;					//  ans will be displayed here
+	
+	
+	
+	Calc1(){ 
+		f=new JFrame(" Scientific calculator ");
+
+		
+		add = new JButton("+");
+		sub = new JButton("-");
+		mul = new JButton("*");
+		div  = new JButton("/");			//  adding '+'  '-'  '*'  and  '/'
+		
+		b1  = new JButton("1");
+		b2  = new JButton("2");
+		b3  = new JButton("3");
+		b4  = new JButton("4");
+		b5  = new JButton("5");
+		b6  = new JButton("6");
+		b7  = new JButton("7");
+		b8  = new JButton("8");
+		b9  = new JButton("9");
+		b0  = new JButton("0");			//  adding 0 to 9 button
+		
+		sin   = new JButton("sin");			//  adding other operation buttons	
+		cos  = new JButton("cos");
+		tan   = new JButton("tan");
+		isin  = new JButton("sin^");
+		icos = new JButton("cos^");
+		itan  = new JButton("tan^");
+		
+		clr      = new JButton("c");
+		point  = new JButton(".");
+		pow   = new JButton("^");
+		root    = new JButton("v");
+		log     = new JButton("Log");
+		equal = new JButton("=");
+		fac      = new JButton("n!");
+		rev      = new JButton("1/x");
+
+		string3 = new String("");
+		op1     = new String("");
+		op2     = new String("");
+		
+		x = new JTextField("", 15);
+		y = new JTextField("", 25);
+		
+		display();                                                                          	//  display method called
+	}
+
+	void display(){
+		
+		f.setSize(600, 400);					//  For setting the size of the frame
+		
+		Color c = new Color(50,50,100);			//  Setting Color
+		Container con = f.getContentPane(); 			
+		con.setBackground( c );				//  Setting the background Color of Frame
+
+		f.setVisible(true);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	 //  Closes the frame on exit
+		f.setLayout(null);
+    
+
+		x.setEditable(false);
+		y.setEditable(false);                                                    		//  To make the text box un-editable
+		
+		
+		x.setBounds(50, 20, 150, 30);				//  For arranging the buttons in proper fashion
+		y.setBounds(350, 20, 180, 30);                                                 	
+		
+		b1.setBounds(50, 100, 50, 50);
+		b2.setBounds(100, 100, 50, 50);
+		b3.setBounds(150, 100, 50, 50);
+		b4.setBounds(50, 150, 50, 50);
+		b5.setBounds(100, 150, 50, 50);
+		b6.setBounds(150, 150, 50, 50);
+		b7.setBounds(50, 200, 50, 50);
+		b8.setBounds(100, 200, 50, 50);
+		b9.setBounds(150, 200, 50, 50);
+		b0.setBounds(50, 250, 50, 50);
+		point.setBounds(100, 250, 50, 50);
+		equal.setBounds(150, 250, 50, 50);
+		
+		add.setBounds(250, 100, 50, 50);
+		sub.setBounds(250, 150, 50, 50);
+		mul.setBounds(250, 200, 50, 50);
+		div.setBounds(250, 250, 50, 50);
+
+		clr.setBounds(350, 100, 60, 50);
+		pow.setBounds(410, 100, 60, 50);
+		root.setBounds(470, 100, 60, 50);
+		fac.setBounds(350,150,60,50);
+           		rev.setBounds(410,150,60,50);
+		log.setBounds(470, 150, 60, 50);
+
+		sin.setBounds(350, 200, 60, 50);
+		cos.setBounds(410, 200, 60, 50);
+		tan.setBounds(470, 200, 60, 50);
+		isin.setBounds(350, 250, 60, 50);
+		icos.setBounds(410, 250, 60, 50);
+		itan.setBounds(470, 250, 60, 50);
+
+		
+		b1.setBackground(Color.black);                                                                //  setting background color of button
+		b2.setBackground(Color.black);
+		b3.setBackground(Color.black);
+		b4.setBackground(Color.black);
+		b5.setBackground(Color.black);
+		b6.setBackground(Color.black);
+		b7.setBackground(Color.black);
+		b8.setBackground(Color.black);
+		b9.setBackground(Color.black);
+		b0.setBackground(Color.black);
+		point.setBackground(Color.black);
+		equal.setBackground(Color.black);
+
+		add.setBackground(Color.black);
+	   	mul.setBackground(Color.black);
+	   	div.setBackground(Color.black);
+	   	sub.setBackground(Color.black);
+	   	cos.setBackground(Color.black);
+	   	sin.setBackground(Color.black);
+	   	tan.setBackground(Color.black);
+		icos.setBackground(Color.black);
+	   	isin.setBackground(Color.black);
+	   	itan.setBackground(Color.black);
+		rev.setBackground(Color.black);
+		fac.setBackground(Color.black);
+		root.setBackground(Color.black);
+		pow.setBackground(Color.black);
+	   	log.setBackground(Color.black);
+	   	clr.setBackground(Color.black);
+	   	
+	   	
+	   	
+		fac.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)    
+                                          		  {
+					y.setText("factorial");
+					str=14;				
+				}
+			});
+	
+		
+		rev.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					y.setText("1/x");
+                                				str=15;			
+				}
+			});
+
+		
+		 b1.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{      			
+				x.setText(x.getText()+"1");
+				
+				if(str==0)                                     		//if str is 0 its operand a. else operand b
+			                  op1 = op1+"1";
+				
+				else 
+				op2= op2+"1";                                       	//displaying in textbox as string of numbers                             
+				}
+			});
+
+				
+		b2.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				x.setText(x.getText()+"2");
+				
+				if(str==0)
+				op1 = op1+"2";
+					
+				else
+                     	                                   op2= op2+"2";
+				}
+			});
+			
+		
+		b3.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				x.setText(x.getText()+"3");
+		
+				if(str==0)
+		                                   op1 = op1+"3";
+					
+				else
+				op2= op2+"3";
+                                         		}
+			});
+			
+	
+		b4.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				x.setText(x.getText()+"4");
+			
+				if(str==0)
+				op1 = op1+"4";
+				
+				else 
+				op2= op2+"4";
+				}
+			});
+			
+
+		b5.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				x.setText(x.getText()+"5");
+                  			
+				if(str==0)
+				op1 = op1+"5";
+					
+				else
+				op2= op2+"5";
+                                          		}
+			});
+			
+		b6.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				x.setText(x.getText()+"6");
+	
+			                  if(str==0)	
+				op1 = op1+"6";
+				
+				else	
+				op2= op2+"6";
+                                          		}
+			});
+			
+		
+		b7.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				x.setText(x.getText()+"7");
+                                
+				if(str==0)
+				op1 = op1+"7";
+
+				else
+				op2= op2+"7";
+                                          		}	
+			});
+			
+			
+		b8.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				x.setText(x.getText()+"8");
+
+				if(str==0)
+			                 op1 = op1+"8";
+		
+				else
+				op2= op2+"8";
+                                          		}	
+			});
+			
+		
+		b9.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				x.setText(x.getText()+"9");
+				
+				if(str==0)	
+				op1 = op1+"9";
+	
+				else
+				op2= op2+"9";
+                                          		}
+			});
+			
+		
+		b0.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				x.setText(x.getText()+"0");
+                        
+				if(str==0)
+				op1 = op1+"0";
+					
+				else
+                        			op2= op2+"0";
+                                          		}	
+			});
+			
+			
+		add.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				y.setText(x.getText()+"+");
+				str=1;					// str determines which operation is to be performed
+			                  x.setText("");                                                           	
+				} 
+			});
+			
+			
+		sub.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				y.setText(x.getText()+"-");
+				str=2;
+				x.setText("");				// after every operation first textbox will be cleared
+				}
+			});
+			
+			
+		mul.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				y.setText(x.getText()+"*");
+				str=3;	
+				x.setText("");
+				}
+			});
+			
+			
+		div.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				y.setText(x.getText()+"/");
+				str=4;	 
+                                    		x.setText("");
+				}
+			});
+				
+		
+		pow.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				y.setText(x.getText()+"^");
+				str=5;
+                  			x.setText("");
+				}
+			});
+				
+				
+		root.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				y.setText("v");
+				str=6;
+				x.setText("");
+				}
+			});
+				
+		
+		sin.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				y.setText("sin");
+				str=7;
+				x.setText("");
+                                       		}
+			});
+				
+	
+		cos.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				y.setText("cos");
+				str=8;
+				x.setText("");
+                                                 		}
+			});
+				
+				
+		tan.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				y.setText("tan");
+				str=9;
+				 x.setText("");
+                                                      	}
+			});
+				
+	
+		isin.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				y.setText("sin^");
+				str=10;
+				x.setText("");
+                                                		}
+			});
+				
+			
+		icos.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				y.setText("cos^");
+				str=11;
+				x.setText("");
+                                       		}
+			});
+				
+				
+		itan.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				y.setText("tan^");
+				str=12;
+				 x.setText("");
+                                            		}
+			});
+				
+				
+		log.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				y.setText("Log");
+				str=13;
+				x.setText("");
+                                                 		}
+			});
+				
+			
+		equal.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				  if(str<=5)
+				  {
+				
+				  a=Double.parseDouble(op1);			//  converting String from textbox to double for calculations
+				  b=Double.parseDouble(op2);
+
+				  if(str==1)		d=a+b;
+			           else  if(str==2)		d=a-b;                                         	//  arithmetic operation
+			           else  if(str==3)		d=a*b;
+			           else  if(str==4) 	d=a/b;
+			           else     		d=(Math.pow(a, b));
+				
+				  }
+				else 
+				 {
+
+				b=Double.parseDouble(op2);          		 //  calculations like tan 60, factorial etc
+				
+				if(str==6)		d= Math.sqrt(b);            	//  in this only one operand is required
+				if(str==7)		d= Math.sin(b);
+				if(str==8)		d= Math.cos(b);
+				if(str==9)		d= Math.tan(b);
+				if(str==10)		d= Math.asin(b);     		//  b is taken because after each operation,
+				if(str==11)		d= Math.acos(b);		//  is pressed,the 2nd no is stored as 2nd operand
+				if(str==12)		d= Math.atan(b);
+				if(str==13)		d=Math.log10(b);
+                                                     	if(str==14) 
+                                                           	    {
+                                                         	if (b < 0)		d=0;			//  Factorial
+                                                               	
+				long i, ss = 1;
+				
+				for (i = 2; i <= b; i++)
+				ss *= i;
+				
+				d=ss;
+				
+				    }
+				if(str==15)	d=1/b;
+				
+				  }
+						
+						
+				string3=new Double(d).toString();                                //  converted to string before displaying in Textbox
+				op1 = string3;
+				op2 = "";
+				x.setText("");				//  Input textbox is cleared for new input after every answer
+				y.setText(op1);
+						
+				}
+				});
+
+		
+				
+			clr.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+					x.setText("");
+					y.setText("");
+					str=0;
+					a=b=d=0;
+					op1="";
+					op2="";
+					string3="";
+					}
+				});
+				
+		
+			point.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+					x.setText(x.getText()+".");
+					if(str==0)op1 = op1+".";
+					else op2= op2+".";
+					}
+				});
+				
+				
+			
+	   	f.add(x);
+	    	f.add(y);
+		f.add(equal);
+		f.add(add);
+		f.add(sub);
+		f.add(mul);
+		f.add(div);
+		f.add(b1);
+		f.add(b2);
+		f.add(b3);
+		f.add(b4);
+		f.add(b5);
+		f.add(b6);
+		f.add(b7);
+		f.add(b8);
+		f.add(b9);
+		f.add(b0);
+		f.add(clr);
+		f.add(point);
+		f.add(root);
+		f.add(pow);
+		f.add(sin);
+		f.add(cos);
+		f.add(tan);
+		f.add(isin);
+		f.add(icos);
+		f.add(itan);
+		f.add(log);
+                		f.add(fac);
+		f.add(rev);
+		
+	}
+
+
+	
+	public static void main(String[] args)
+		{
+                        	try {
+                        UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+                		     }
+		catch (Exception e) {}
+                
+		Calc1 c=new Calc1();                                                                		//  Instantiating object, calling constructor
+		
+		
+		}
+}
